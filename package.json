@@ -1,0 +1,26 @@
+{
+  "name": "web-rtc",
+  "version": "1.0.0",
+  "description": "Web RTC application with Vite, React, TypeScript, and WebSocket server",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "build": "cd client && npm run build",
+    "preview": "cd client && npm run preview",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install"
+  },
+  "keywords": [
+    "webrtc",
+    "vite",
+    "react",
+    "typescript",
+    "websocket"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "sass": "^1.89.2"
+  }
+}
