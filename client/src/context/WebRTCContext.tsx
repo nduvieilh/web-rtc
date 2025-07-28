@@ -36,9 +36,7 @@ export const WebRTCProvider = ({ children }: { children: ReactNode }) => {
 
   const createPeerConnection = () => {
     const pc = new RTCPeerConnection({
-      iceServers: [
-        { urls: 'stun:stun.l.google.com:19302' }
-      ]
+      iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
     });
     pc.onicecandidate = (event) => {
       if (event.candidate && socket) {
@@ -46,7 +44,7 @@ export const WebRTCProvider = ({ children }: { children: ReactNode }) => {
       }
     };
     pc.ontrack = (event) => {
-      setRemoteStream(prev => {
+      setRemoteStream((prev) => {
         if (prev) return prev;
         const newStream = new MediaStream();
         newStream.addTrack(event.track);
@@ -63,20 +61,22 @@ export const WebRTCProvider = ({ children }: { children: ReactNode }) => {
       setLocalStream(stream);
       const pc = createPeerConnection();
       setPeerConnection(pc);
-      stream.getTracks().forEach(track => pc.addTrack(track, stream));
+      stream.getTracks().forEach((track) => pc.addTrack(track, stream));
       if (socket) {
         const offer = await pc.createOffer();
         await pc.setLocalDescription(offer);
         socket.send(JSON.stringify({ type: 'offer', offer }));
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Could not access camera/microphone:', err);
-      alert('Could not access camera/microphone. Please check device permissions and availability.');
+      alert(
+        'Could not access camera/microphone. Please check device permissions and availability.',
+      );
     }
   };
 
   const stopVideo = () => {
-    localStream?.getTracks().forEach(track => track.stop());
+    localStream?.getTracks().forEach((track) => track.stop());
     setLocalStream(null);
     setRemoteStream(null);
     peerConnection?.close();
@@ -89,16 +89,18 @@ export const WebRTCProvider = ({ children }: { children: ReactNode }) => {
       setLocalStream(stream);
       const pc = createPeerConnection();
       setPeerConnection(pc);
-      stream.getTracks().forEach(track => pc.addTrack(track, stream));
+      stream.getTracks().forEach((track) => pc.addTrack(track, stream));
       await pc.setRemoteDescription(new RTCSessionDescription(offer));
       const answer = await pc.createAnswer();
       await pc.setLocalDescription(answer);
       if (socket) {
         socket.send(JSON.stringify({ type: 'answer', answer }));
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Could not access camera/microphone (on offer):', err);
-      alert('Could not access camera/microphone. Please check device permissions and availability.');
+      alert(
+        'Could not access camera/microphone. Please check device permissions and availability.',
+      );
     }
   };
 
@@ -119,12 +121,14 @@ export const WebRTCProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <WebRTCContext.Provider value={{
-      localStream,
-      remoteStream,
-      startVideo,
-      stopVideo
-    }}>
+    <WebRTCContext.Provider
+      value={{
+        localStream,
+        remoteStream,
+        startVideo,
+        stopVideo,
+      }}
+    >
       {children}
     </WebRTCContext.Provider>
   );

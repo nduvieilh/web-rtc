@@ -21,9 +21,7 @@ export function MessageList({ messages }: MessageListProps) {
           <p className="mb-0">No messages yet. Start the conversation!</p>
         </div>
       ) : (
-        messages.map((msg, index) => (
-          <Message key={index} {...msg} index={index} />
-        ))
+        messages.map((msg, index) => <Message key={index} {...msg} index={index} />)
       )}
     </div>
   );

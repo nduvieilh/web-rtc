@@ -6,7 +6,6 @@ interface Message {
   timestamp: string;
 }
 
-
 interface WebSocketContextType {
   messages: Message[];
   connected: boolean;
@@ -20,7 +19,6 @@ export const WebSocketProvider = ({ children }: { children: ReactNode }) => {
   const [connected, setConnected] = useState(false);
   const [socket, setSocket] = useState<WebSocket | null>(null);
 
-
   useEffect(() => {
     const host = window.location.hostname;
     const ws = new WebSocket(`ws://${host}:8080`);
@@ -33,11 +31,14 @@ export const WebSocketProvider = ({ children }: { children: ReactNode }) => {
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       if (data.type === 'broadcast') {
-        setMessages(prev => [...prev, {
-          text: data.message,
-          userId: data.userId,
-          timestamp: data.timestamp
-        }]);
+        setMessages((prev) => [
+          ...prev,
+          {
+            text: data.message,
+            userId: data.userId,
+            timestamp: data.timestamp,
+          },
+        ]);
       }
     };
 
@@ -54,11 +55,7 @@ export const WebSocketProvider = ({ children }: { children: ReactNode }) => {
         ws.close();
       }
     };
-    // eslint-disable-next-line
   }, []);
-
-
-
 
   const sendMessage = (msg: string, userId: string) => {
     if (socket && msg.trim()) {
@@ -66,13 +63,14 @@ export const WebSocketProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-
   return (
-    <WebSocketContext.Provider value={{
-      messages,
-      connected,
-      sendMessage
-    }}>
+    <WebSocketContext.Provider
+      value={{
+        messages,
+        connected,
+        sendMessage,
+      }}
+    >
       {children}
     </WebSocketContext.Provider>
   );

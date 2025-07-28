@@ -23,10 +23,7 @@ export function ConnectionStatus({ connected }: ConnectionStatusProps) {
       )}
 
       {connected && (
-        <div
-          className="btn btn-user-color"
-          onClick={regenerateUserId}
-        >
+        <div className="btn btn-user-color" onClick={regenerateUserId}>
           #{userId} <Icon path={mdiRefresh} size={0.8} className="ms-1" />
         </div>
       )}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useWebRTC } from '../context/WebRTCContext';
 
-
 const Video: React.FC = () => {
   const { localStream, remoteStream, startVideo, stopVideo } = useWebRTC();
   const localVideoRef = React.useRef<HTMLVideoElement>(null);
@@ -31,22 +30,40 @@ const Video: React.FC = () => {
   };
 
   return (
-    <div className="video-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
+    <div
+      className="video-container"
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}
+    >
       <div style={{ display: 'flex', gap: 16 }}>
         <div>
           <div>Local Video</div>
-          <video ref={localVideoRef} autoPlay playsInline muted style={{ width: 320, height: 240, background: '#222' }} />
+          <video
+            ref={localVideoRef}
+            autoPlay
+            playsInline
+            muted
+            style={{ width: 320, height: 240, background: '#222' }}
+          />
         </div>
         <div>
           <div>Remote Video</div>
-          <video ref={remoteVideoRef} autoPlay playsInline style={{ width: 320, height: 240, background: '#222' }} />
+          <video
+            ref={remoteVideoRef}
+            autoPlay
+            playsInline
+            style={{ width: 320, height: 240, background: '#222' }}
+          />
         </div>
       </div>
       <div style={{ marginTop: 16 }}>
         {active ? (
-          <button className="btn btn-danger" onClick={handleStop}>Stop Video</button>
+          <button className="btn btn-danger" onClick={handleStop}>
+            Stop Video
+          </button>
         ) : (
-          <button className="btn btn-success" onClick={handleStart}>Start Video</button>
+          <button className="btn btn-success" onClick={handleStart}>
+            Start Video
+          </button>
         )}
       </div>
     </div>

@@ -17,9 +17,7 @@ export function Message({ text, userId, timestamp, index }: MessageProps) {
         </div>
         <UserIdBadge userId={userId} />
       </div>
-      <small className="text-muted">
-        {new Date(timestamp).toLocaleTimeString()}
-      </small>
+      <small className="text-muted">{new Date(timestamp).toLocaleTimeString()}</small>
     </div>
   );
 }

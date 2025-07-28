@@ -23,9 +23,7 @@ export function ChatCard() {
       <div className="card-body">
         <Video />
         <div className="mb-4">
-          <h5 className="mb-3">
-            Messages
-          </h5>
+          <h5 className="mb-3">Messages</h5>
           <MessageList messages={messages} />
         </div>
         <SendForm />

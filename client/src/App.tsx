@@ -1,9 +1,7 @@
-
 import { useEffect } from 'react';
 import { useUserId } from './context/UserIdContext';
 import { ChatCard } from './components/ChatCard';
 import './App.scss';
-
 
 function App() {
   const { userId } = useUserId();
@@ -28,4 +26,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

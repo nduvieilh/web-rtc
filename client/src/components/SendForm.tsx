@@ -30,7 +30,7 @@ export function SendForm() {
           className="form-control"
           placeholder="Type your message..."
           value={message}
-          onChange={e => setMessage(e.target.value)}
+          onChange={(e) => setMessage(e.target.value)}
           onKeyPress={handleKeyPress}
           disabled={!connected}
         />

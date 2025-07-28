@@ -23,9 +23,7 @@ export const UserIdProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setUserId(generateUserId());
   }, []);
   return (
-    <UserIdContext.Provider value={{ userId, regenerateUserId }}>
-      {children}
-    </UserIdContext.Provider>
+    <UserIdContext.Provider value={{ userId, regenerateUserId }}>{children}</UserIdContext.Provider>
   );
 };
 
