@@ -1,6 +1,11 @@
-# # Web RTC Application
 
-A modern TypeScript-based web application with Vite, React, Bootstrap, and WebSocket support.
+<p align="center">
+  <img src="docs/images/screenshot.png" alt="WebRTC App Screenshot" width="600" />
+</p>
+
+# WebRTC Video Chat & Messaging App
+
+A modern, full-stack TypeScript application for real-time video chat and messaging using WebRTC and WebSockets. Built with Vite, React, Bootstrap, and Express.
 
 ## Features
 
