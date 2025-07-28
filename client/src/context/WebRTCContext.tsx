@@ -57,7 +57,7 @@ export const WebRTCProvider = ({ children }: { children: ReactNode }) => {
   const startVideo = async () => {
     if (localStream) return;
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: false, audio: true });
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
       setLocalStream(stream);
       const pc = createPeerConnection();
       setPeerConnection(pc);
@@ -85,7 +85,7 @@ export const WebRTCProvider = ({ children }: { children: ReactNode }) => {
 
   const handleReceiveOffer = async (offer: RTCSessionDescriptionInit) => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: false, audio: true });
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
       setLocalStream(stream);
       const pc = createPeerConnection();
       setPeerConnection(pc);
